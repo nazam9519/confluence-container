@@ -39,7 +39,7 @@ http://localhost:8090
 
 The first boot can take several minutes. Confluence data is stored in the `confluence-home` Docker volume, and PostgreSQL data is stored in the `postgres-data` Docker volume.
 
-This local profile gives Confluence a 1 GB minimum heap and 3 GB maximum heap. It also disables Synchrony/collaborative editing JVM flags, disables password confirmation prompts for admin actions, and does not publish port `8091`, which keeps the local setup lighter.
+This local profile gives Confluence a 1 GB minimum heap and 3 GB maximum heap. It also disables Synchrony/collaborative editing JVM flags, caps Synchrony heap at 512 MB if Confluence starts it, disables password confirmation prompts for admin actions, and does not publish port `8091`, which keeps the local setup lighter.
 
 ## Useful Commands
 
