@@ -39,7 +39,7 @@ http://localhost:8090
 
 The first boot can take several minutes. Confluence data is stored in the `confluence-home` Docker volume, and PostgreSQL data is stored in the `postgres-data` Docker volume.
 
-This local profile gives Confluence a 2 GB minimum heap and 4 GB maximum heap. It also disables Synchrony/collaborative editing JVM flags, disables password confirmation prompts for admin actions, and does not publish port `8091`, which keeps the local setup lighter.
+This local profile gives Confluence a 1 GB minimum heap and 3 GB maximum heap. It also disables Synchrony/collaborative editing JVM flags, disables password confirmation prompts for admin actions, and does not publish port `8091`, which keeps the local setup lighter.
 
 ## Useful Commands
 
@@ -64,5 +64,5 @@ docker-compose down -v
 ## Notes
 
 - The official image is `atlassian/confluence`. The older `atlassian/confluence-server` name is deprecated and kept only for compatibility.
-- `CONFLUENCE_PLATFORM` defaults to `linux/amd64`, which is the safest default for Atlassian's image on Apple Silicon Macs. Remove or change it in `.env` if your Docker host does not need it.
+- Docker chooses the native image architecture automatically. On Apple Silicon, the official Confluence image includes an ARM64 variant, which avoids AMD64 emulation.
 - Do not commit `.env`; it may contain database credentials.
