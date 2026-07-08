@@ -41,7 +41,7 @@ The first boot can take several minutes. Confluence data is stored in the `confl
 
 This local profile gives Confluence a 1 GB minimum heap and 3 GB maximum heap. It also disables Synchrony/collaborative editing JVM flags, caps Synchrony heap at 512 MB if Confluence starts it, disables password confirmation prompts for admin actions, and does not publish port `8091`, which keeps the local setup lighter.
 
-This local profile disables UPM app signature checks with `-Datlassian.upm.signature.check.disabled=true`, which allows third-party app installation without a UPM truststore.
+This local profile disables UPM app signature checks with `-Datlassian.upm.signature.check.disabled=true` and enables manual app uploads with `-Dupm.plugin.upload.enabled=true`.
 
 ## Useful Commands
 
