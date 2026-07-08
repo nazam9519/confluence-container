@@ -15,7 +15,7 @@ services:
       ATL_JDBC_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
       JVM_MINIMUM_MEMORY: ${JVM_MINIMUM_MEMORY:-2048m}
       JVM_MAXIMUM_MEMORY: ${JVM_MAXIMUM_MEMORY:-4096m}
-      JVM_SUPPORT_RECOMMENDED_ARGS: ${JVM_SUPPORT_RECOMMENDED_ARGS:--Dsynchrony.proxy.enabled=false -Dsynchrony.btf.off=true}
+      JVM_SUPPORT_RECOMMENDED_ARGS: ${JVM_SUPPORT_RECOMMENDED_ARGS:--Dsynchrony.proxy.enabled=false -Dsynchrony.btf.off=true -Dpassword.confirmation.disabled=true}
       ATL_TOMCAT_PORT: 8090
       ATL_TOMCAT_SCHEME: ${ATL_TOMCAT_SCHEME:-http}
     volumes:
