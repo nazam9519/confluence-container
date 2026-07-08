@@ -41,7 +41,7 @@ The first boot can take several minutes. Confluence data is stored in the `confl
 
 This local profile gives Confluence a 1 GB minimum heap and 3 GB maximum heap. It also disables Synchrony/collaborative editing JVM flags, caps Synchrony heap at 512 MB if Confluence starts it, disables password confirmation prompts for admin actions, and does not publish port `8091`, which keeps the local setup lighter.
 
-The `upmconfig/truststore` directory is mounted read-only and contains Atlassian's Marketplace app-signing CA certificates. Confluence 10 includes UPM 8, where app signature checks are enabled by default for new app installations.
+The `upmconfig/truststore` directory is mounted read-only into Confluence home and contains Atlassian's Marketplace app-signing CA certificates. Confluence 10 includes UPM 8, where app signature checks are enabled by default for new app installations.
 
 ## Useful Commands
 

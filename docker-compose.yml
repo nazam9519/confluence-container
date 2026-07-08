@@ -19,7 +19,7 @@ services:
       ATL_TOMCAT_SCHEME: ${ATL_TOMCAT_SCHEME:-http}
     volumes:
       - confluence-home:/var/atlassian/application-data/confluence
-      - ./upmconfig:/var/atlassian/application-data/confluence/shared-home/upmconfig:ro
+      - ./upmconfig:/var/atlassian/application-data/confluence/upmconfig:ro
     restart: unless-stopped
 
   postgres:
