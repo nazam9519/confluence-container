@@ -1,0 +1,43 @@
+services:
+  confluence:
+    image: atlassian/confluence:${CONFLUENCE_VERSION:-latest}
+    container_name: confluence
+    platform: ${CONFLUENCE_PLATFORM:-linux/amd64}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "${CONFLUENCE_HTTP_PORT:-8090}:8090"
+      - "${CONFLUENCE_SYNCHRONY_PORT:-8091}:8091"
+    environment:
+      ATL_DB_TYPE: postgresql
+      ATL_JDBC_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-confluence}
+      ATL_JDBC_USER: ${POSTGRES_USER:-confluence}
+      ATL_JDBC_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+      JVM_MINIMUM_MEMORY: ${JVM_MINIMUM_MEMORY:-1024m}
+      JVM_MAXIMUM_MEMORY: ${JVM_MAXIMUM_MEMORY:-2048m}
+      ATL_TOMCAT_PORT: 8090
+      ATL_TOMCAT_SCHEME: ${ATL_TOMCAT_SCHEME:-http}
+    volumes:
+      - confluence-home:/var/atlassian/application-data/confluence
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:${POSTGRES_VERSION:-16-alpine}
+    container_name: confluence-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-confluence}
+      POSTGRES_USER: ${POSTGRES_USER:-confluence}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-confluence} -d ${POSTGRES_DB:-confluence}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  confluence-home:
+  postgres-data:

@@ -1,0 +1,11 @@
+.env
+.DS_Store
+
+# Local runtime data if bind mounts are added later.
+data/
+postgres-data/
+confluence-home/
+
+# Logs and temporary files.
+*.log
+tmp/
